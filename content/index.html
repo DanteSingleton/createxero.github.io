@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Zola Terminimal theme</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/color/blue.css">
+
+    <link rel="stylesheet" href="/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="/" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Terminimal theme
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="/">main</a></li>
+            
+                <li><a href="//tags">tags</a></li>
+            
+                <li><a href="//archive">archive</a></li>
+            
+                <li><a href="//about">about me</a></li>
+            
+                <li><a href="https://github.com/pawroman/zola-theme-terminimal" target="_blank" rel="noopener noreferrer">github</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="/content/">F446xx Can boot With Pass Through</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <h2 id="dependancies">Dependancies</h2>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">sudo</span><span> apt update
+</span><span style="color:#ffb964;">sudo</span><span> apt upgrade
+</span><span style="color:#ffb964;">sudo</span><span> apt install git
+</span><span>
+</span><span style="color:#ffb964;">git</span><span> clone https://github.com/th33xitus/kiauh.git
+</span><span>
+</span><span style="color:#ffb964;">pip3</span><span> install pyserial
+</span></code></pre>
+<h2 id="kiauh-configuration">Kiauh Configuration</h2>
+<ul>
+<li>Choose: option 1 [Install]</li>
+</ul>
+<h2 id="main-menu">Main menu</h2>
+<p><img src="/content/img/kaiuh_main.png" alt="" /></p>
+<h2 id="install-klipper">Install Klipper</h2>
+<ul>
+<li>Choose: option 1 [klipper]</li>
+<li>Then follow the prompt
+<img src="/content/img/kaiuh_klipper_install.png" alt="" /></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span>cd </span><span style="color:#ffb964;">~</span><span>/
+</span><span style="color:#ffb964;">git</span><span> clone https://github.com/Arksine/CanBoot
+</span><span>cd CanBoot
+</span><span style="color:#ffb964;">make</span><span> menuconfig
+</span></code></pre>
+<h2 id="configuration">Configuration</h2>
+<p><img src="/content/img/canboot.png" alt="" /></p>
+<h2 id="build-the-firmware">Build the firmware</h2>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">make</span><span> clean
+</span><span style="color:#ffb964;">make
+</span></code></pre>
+<h2 id="flash-the-octopus-pro-1-0">Flash the Octopus Pro 1.0</h2>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">sudo</span><span> dfu-util</span><span style="color:#ffb964;"> -a</span><span> 0</span><span style="color:#ffb964;"> -D ~</span><span>/CanBoot/out/canboot.bin</span><span style="color:#ffb964;"> --dfuse-address</span><span> 0x08000000:force:mass-erase:leave</span><span style="color:#ffb964;"> -d</span><span> 0483:df11
+</span></code></pre>
+<h2 id="klipper-firmware-config">Klipper Firmware Config</h2>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span>cd </span><span style="color:#ffb964;">~</span><span>/klipper
+</span><span style="color:#ffb964;">make</span><span> menuconfig
+</span></code></pre>
+<p><img src="/content/img/klipper_config.png" alt="" /></p>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">make</span><span> clean
+</span><span style="color:#ffb964;">make
+</span></code></pre>
+<h2 id="flash-klipper-with-canboot">Flash Klipper With CanBoot</h2>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">ls</span><span> /dev/serial/by-id/*
+</span><span style="color:#ffb964;">python3 ~</span><span>/CanBoot/scripts/flash_can.py</span><span style="color:#ffb964;"> -f ~</span><span>/klipper/octopus_klipper.bin</span><span style="color:#ffb964;"> -d </span><span>&lt;serial_device&gt;
+</span></code></pre>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">sudo</span><span> nano /etc/network/interfaces.d/can0
+</span></code></pre>
+<ul>
+<li>Copy and paste the following:</li>
+</ul>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">allow-hotplug</span><span> can0
+</span><span style="color:#ffb964;">iface</span><span> can0 can static
+</span><span>    </span><span style="color:#ffb964;">bitrate</span><span> 500000
+</span><span>    </span><span style="color:#ffb964;">up</span><span> ifconfig $</span><span style="color:#ffb964;">IFACE</span><span> txqueuelen 128
+</span><span>    </span><span style="color:#ffb964;">pre-up</span><span> ip link set can0 type can bitrate 500000
+</span><span>    </span><span style="color:#ffb964;">pre-up</span><span> ip link set can0 txqueuelen 256
+</span></code></pre>
+<ul>
+<li>Reboot the machine</li>
+</ul>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">sudo</span><span> reboot
+</span></code></pre>
+<ul>
+<li>Query the network</li>
+</ul>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">ip</span><span> addr can0
+</span><span style="color:#ffb964;">~/CanBoot/scripts/flash_can.py -i</span><span> can0</span><span style="color:#ffb964;"> -q
+</span></code></pre>
+<ul>
+<li>If everything went well you should have a device </li>
+<li>&quot;OpenMoko, Inc. Geschwister Schneider CAN adapter&quot;</li>
+</ul>
+<pre data-lang="bash" style="background-color:#151515;color:#e8e8d3;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#ffb964;">pi@build:~/klipper</span><span> $ lsusb
+</span><span style="color:#ffb964;">Bus</span><span> 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+</span><span style="color:#ffb964;">Bus</span><span> 001 Device 003: ID 1d50:606f OpenMoko, Inc. Geschwister Schneider CAN adapter
+</span><span style="color:#ffb964;">Bus</span><span> 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+</span><span style="color:#ffb964;">Bus</span><span> 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Powered by <a href="https://www.getzola.org/">Zola</a></span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

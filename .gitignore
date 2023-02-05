@@ -1,2 +1,3 @@
 doc_gen
 .github/workflows/main.yml
+.github/workflows/json

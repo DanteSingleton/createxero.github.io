@@ -70,7 +70,7 @@ post_view_navigation_prompt = "Thanks for reading! Read other posts?"
 # Use full Hack character set, not just a subset.
 # Switch this to true if you need full unicode support.
 # Defaults to false.
-use_full_hack_font = false
+use_full_hack_font = true
 
 # Optional: Global favicon URL and mimetype.
 #           Mimetype defaults to "image/x-icon".
@@ -89,4 +89,3 @@ use_full_hack_font = false
 #
 # Note that the main (index) page only has the main title.
 page_titles = "main_only"
-
